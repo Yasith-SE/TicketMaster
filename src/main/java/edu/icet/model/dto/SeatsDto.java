@@ -7,16 +7,12 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-
 public class SeatsDto {
-
     private Long seatsId;
 
-    private String eventId;
+    private Long eventId; // ID should be Long, not String
 
     private String seatNumber;
 
     private String status;
-
-
 }

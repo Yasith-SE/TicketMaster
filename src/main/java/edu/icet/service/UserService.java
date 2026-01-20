@@ -13,13 +13,7 @@ public class UserService {
     UserRepository userRepository;
 
     public void save(UserDto userDto){
-        userRepository.save(new UserEntity(
-            userDto.getUserId(),
-                userDto.getName(),
-                userDto.getTire(),
-                userDto.getEmail()
 
-        ));
 
     }
 

@@ -1,6 +1,5 @@
 package edu.icet.model.dto;
 
-
 import lombok.*;
 
 @Getter
@@ -8,17 +7,15 @@ import lombok.*;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-
-
 public class EventsDto {
     private Long eventId;
 
+
     private String name;
 
-    private double basePrice;
+    private Double basePrice;
 
-    private  String highDemand;
+    private Boolean highDemand;
 
-    private String status;
-
+    private String eventDate;
 }

@@ -1,10 +1,18 @@
 package edu.icet.model.dto;
 
+import lombok.*;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class BookingDto {
+    private Long bookingId;
 
-    private Long bookId;
+    private Long userId;
 
-    private String bookingName;
+    private Long seatId;
 
-
+    private String status;
 }
