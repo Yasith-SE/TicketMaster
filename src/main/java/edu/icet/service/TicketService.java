@@ -1,5 +1,8 @@
 package edu.icet.service;
 
+import edu.icet.model.dto.EventsDto;
+import edu.icet.model.dto.SeatsDto;
+import edu.icet.model.dto.UserDto;
 import edu.icet.model.entity.*;
 import edu.icet.repository.*;
 import edu.icet.util.AppConstants;
@@ -59,5 +62,35 @@ public class TicketService {
         }
 
         return price;
+    }
+
+    public UserEntity createUser(UserDto dto) {
+        return userRepository.save(UserEntity.builder()
+                .name(dto.getName())
+                .email(dto.getEmail())
+                .tier(dto.getTier())
+                .build());
+    }
+
+    // 2. Create Event
+    public EventsEntity createEvent(EventsDto dto) {
+        return eventsRepository.save(EventsEntity.builder()
+                .name(dto.getName())
+                .basePrice(dto.getBasePrice())
+                .isHighDemand(dto.getHighDemand())
+                .eventDate(LocalDateTime.parse(dto.getEventDate())) // Format: "2026-01-20T10:00:00"
+                .build());
+    }
+
+    // 3. Create Seat
+    public SeatsEntity createSeat(SeatsDto dto) {
+        EventsEntity event = eventsRepository.findById(dto.getEventId())
+                .orElseThrow(() -> new RuntimeException("Event not found"));
+
+        return seatRepository.save(SeatsEntity.builder()
+                .seatNumber(dto.getSeatNumber())
+                .event(event)
+                .status("AVAILABLE") // Default status
+                .build());
     }
 }
